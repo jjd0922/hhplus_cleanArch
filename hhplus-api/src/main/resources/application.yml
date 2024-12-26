@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:mysql://hanghe-database.cla4iewkenyo.ap-northeast-2.rds.amazonaws.com:3306/hanghe?useSSL=false
+    username: hanghe
+    password: hanghe1212
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true
+
+  thymeleaf:
+    enabled: true
+    cache: false
+
+server:
+  port: 8083
+  tomcat:
+    file-encoding: UTF-8
+  servlet:
+    session:
+      tracking-modes: cookie
+      timeout: 10800
+
+decorator:
+  datasource:
+    enabled: false
+
+logging:
+  charset:
+    console: UTF-8
+    file: UTF-8
