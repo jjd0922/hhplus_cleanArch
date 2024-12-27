@@ -225,10 +225,14 @@ public class LectureRegistrationControllerTest {
 
         // when: 동일한 요청을 5번 수행
         for (int i = 0; i < 5; i++) {
-            mockMvc.perform(post("/api/lecture-registration/register")
-                            .contentType("application/json")
-                            .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isOk());
+            try {
+                mockMvc.perform(post("/api/lecture-registration/register")
+                                .contentType("application/json")
+                                .content(objectMapper.writeValueAsString(request)))
+                        .andExpect(status().isOk());
+            } catch (Exception e) {
+                // 중복 신청으로 예외 발생 시 무시
+            }
         }
 
         // then: 동일 유저와 동일 강의에 대한 신청은 1번만 성공

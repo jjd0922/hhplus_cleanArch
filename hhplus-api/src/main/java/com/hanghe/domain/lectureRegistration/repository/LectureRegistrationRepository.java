@@ -4,6 +4,8 @@ import com.hanghe.domain.lecture.entity.Lecture;
 import com.hanghe.domain.lectureRegistration.entity.LectureRegistration;
 import com.hanghe.domain.lectureRegistration.state.LectureRegistrationState;
 import com.hanghe.domain.user.entity.User;
+import jakarta.persistence.Entity;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -31,5 +33,6 @@ public interface LectureRegistrationRepository extends JpaRepository<LectureRegi
     /** 강의 신청 초과 데이터 조회 */
     List<LectureRegistration> findAllByLectureAndLrStateAndLrSequenceGreaterThan(Lecture lecture, LectureRegistrationState state, int limit);
 
+    @EntityGraph(attributePaths = {"user", "lecture"})
     List<LectureRegistration> findAllByLectureAndUserAndLrState(Lecture lecture,User user,LectureRegistrationState state);
 }
