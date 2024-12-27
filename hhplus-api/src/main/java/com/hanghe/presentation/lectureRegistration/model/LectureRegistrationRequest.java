@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 @Setter
 public class LectureRegistrationRequest {
 
-    private Long userIdx;
+    private String userId;
     private Long lectureIdx;
     private LectureRegistrationState lectureState;
 

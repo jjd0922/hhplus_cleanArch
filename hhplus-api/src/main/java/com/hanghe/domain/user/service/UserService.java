@@ -16,7 +16,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     /** 유저 조회*/
-    public Optional<User> findUserById(Long userId) {
-        return userRepository.findById(userId);
+    public User findUserByUId(String userId) {
+        return userRepository.findUserByUId(userId);
     }
 }

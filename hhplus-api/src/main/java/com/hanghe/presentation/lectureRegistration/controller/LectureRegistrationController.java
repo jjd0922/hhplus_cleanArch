@@ -24,8 +24,9 @@ public class LectureRegistrationController {
     public LectureRegistrationResponse registerLecture(@RequestBody LectureRegistrationRequest request) {
 
         LectureRegistration registration = LectureRegistration.builder()
-                .user(userService.findUserById(request.getUserIdx()).get())
-                .lecture(lectureService.findLectureById(request.getLectureIdx()).get())
+                .user(userService.findUserByUId(request.getUserId()))
+                .lecture(lectureService.findLectureById(request.getLectureIdx())
+                        .orElseThrow(() -> new RuntimeException("강의 정보 없음 : " + request.getLectureIdx())))
                 .lrState(request.getLectureState())
                 .build();
 

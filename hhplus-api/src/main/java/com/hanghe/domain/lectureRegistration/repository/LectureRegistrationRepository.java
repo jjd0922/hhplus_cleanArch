@@ -18,6 +18,9 @@ public interface LectureRegistrationRepository extends JpaRepository<LectureRegi
     /** 유저 신청 강의 목록 조회*/
     List<LectureRegistration> findAllByUserAndLrState(User user, LectureRegistrationState state);
 
+    /** 강의 신칭 유저 목록 조회*/
+    List<LectureRegistration> findAllByLectureAndLrState(Lecture lecture, LectureRegistrationState state);
+
     /** 강의 등록인원 수 조회*/
     int countByLectureAndLrState(Lecture lecture, LectureRegistrationState state);
 
@@ -27,4 +30,6 @@ public interface LectureRegistrationRepository extends JpaRepository<LectureRegi
 
     /** 강의 신청 초과 데이터 조회 */
     List<LectureRegistration> findAllByLectureAndLrStateAndLrSequenceGreaterThan(Lecture lecture, LectureRegistrationState state, int limit);
+
+    List<LectureRegistration> findAllByLectureAndUserAndLrState(Lecture lecture,User user,LectureRegistrationState state);
 }
