@@ -1,0 +1,13 @@
+package com.hanghe;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class HangheApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(HangheApplication.class, args);
+	}
+
+}
