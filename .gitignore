@@ -1,0 +1,67 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+# create application.yml
+- name: make application-aws.yml
+    if: contains(github.ref, 'release')
+    run: |
+        # spring의 resources 경로로 이동
+        cd ./src/main/resources
+        ls -al
+        touch ./application-aws.yml
+
+        # GitHub-Actions에서 설정한 값을 application-aws.yml 파일에 쓰기
+        echo "copy properties"
+        echo "${{ secrets.AWS_PROPERTIES }}" > ./application-aws.yml
+       shell: bash
+
+# create key.p8 file
+- name: make apple key.p8 file
+    if: contains(github.ref, 'release')
+    run: |
+          # spring의 resources 경로로 이동
+        mkdir ./src/main/resources/key
+        cd ./src/main/resources/key
+
+        ls -al
+        touch ./AuthKey.p8
+
+        # GitHub-Actions에서 설정한 값 파일에 쓰기
+        echo "copy APPLE_SECRET_KEY"
+        echo "${{ secrets.APPLE_SECRET_KEY }}" > ./AuthKey.p8
+       shell: bash
